@@ -7,6 +7,7 @@ import Humans from './pages/Humans';
 import About from './pages/About';
 import { CssBaseline } from '@mui/material'; 
 
+
 function App() {
   return (
     <Router>
