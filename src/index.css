@@ -5,7 +5,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #88e23b;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -29,6 +29,7 @@ body {
   min-width: 100vw; /* Asegura que el ancho mínimo sea 100% de la vista */
   min-height: 100vh;
   overflow-x: hidden; /* Elimina el desbordamiento horizontal */
+  background-color: #88e23b; /* Asegúrate de que el fondo sea verde */
 }
 
 h1 {
@@ -43,7 +44,7 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: #88e23b;
   cursor: pointer;
   transition: border-color 0.25s;
 }
@@ -73,28 +74,25 @@ img {
   height: auto; /* Mantiene la proporción de la imagen */
 }
 
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
     background-color: #ffffff;
   }
   a:hover {
-    color: #747bff;
+    color: #fdfdfd;
   }
   button {
     background-color: #f9f9f9;
   }
 }
 
-@media (min-width: 600px) {
-  .card {
-    max-width: 600px; /* Ajusta el ancho máximo para pantallas medianas */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2.5em; /* Reduce el tamaño del título en pantallas pequeñas */
+  }
+  button {
+    font-size: 0.9em; /* Ajusta el tamaño del botón */
   }
 }
-
-@media (min-width: 960px) {
-  .card {
-    max-width: 800px; /* Ajusta el ancho máximo para pantallas grandes */
-  }
-}
-

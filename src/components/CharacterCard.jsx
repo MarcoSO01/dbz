@@ -12,9 +12,17 @@ function CharacterCard({ character }) {
       />
       <CardContent>
         <Typography variant="h5">{character.name}</Typography>
-        <Button variant="contained" color="primary" component={Link} to={`/characters/${character.id}`}>
+        <Button
+          variant="contained"
+          sx={{ backgroundColor: '#88e23b', color: '#000', '&:hover': { backgroundColor: '#76d62a' } }} // Estilos para el botón
+          component={Link}
+          to={`/characters/${character.id}`}
+          style={{ marginTop: '20px', display: 'block', marginLeft: 'auto', marginRight: 'auto' }} // Estilo adicional
+        >
           DETALLE
         </Button>
+
+
       </CardContent>
     </Card>
   );

@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   return (
-    <AppBar position="static">
+    <AppBar position="static" sx={{ backgroundColor: '#88e23b' }}> {/* Fondo verde */}
       <Toolbar>
         <Typography variant="h6" style={{ flexGrow: 1 }}>
-          Rick and Morty
+          RICK AND MORTY
         </Typography>
         <Button color="inherit" component={Link} to="/">Home</Button>
         <Button color="inherit" component={Link} to="/aliens">Aliens</Button>
@@ -19,4 +19,5 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
 

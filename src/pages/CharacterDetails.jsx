@@ -45,15 +45,15 @@ function CharacterDetail() {
 
   return (
     <Container maxWidth="lg" style={{ marginTop: '20px' }}>
-      <Typography 
-        variant="h4" 
-        style={{ 
-          fontFamily: 'Inter, system-ui, Avenir, Helvetica, Arial, sans-serif', 
-          textAlign: 'center', 
-          marginBottom: '20px' 
+      <Typography
+        variant="h4"
+        style={{
+          fontFamily: 'Inter, system-ui, Avenir, Helvetica, Arial, sans-serif',
+          textAlign: 'center',
+          marginBottom: '20px'
         }}
       >
-        Información
+        INFORMACION
       </Typography>
       <Grid container spacing={2} alignItems="center">
         <Grid item xs={12} sm={6} md={4}>
@@ -70,9 +70,9 @@ function CharacterDetail() {
           </Box>
         </Grid>
       </Grid>
-      <Button 
-        variant="contained" 
-        color="primary" 
+      <Button
+        variant="contained"
+        sx={{ backgroundColor: '#88e23b', color: '#000', '&:hover': { backgroundColor: '#76d62a' } }} // Estilos para el botón
         onClick={() => navigate(-1)} // Navegar a la página anterior
         style={{ marginTop: '20px', display: 'block', marginLeft: 'auto', marginRight: 'auto' }}
       >
