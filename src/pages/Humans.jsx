@@ -1,31 +1,48 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { Container, Grid, CircularProgress, Typography } from '@mui/material';
 import CharacterCard from '../components/CharacterCard';
-import { Grid, Container } from '@mui/material';
+import axios from 'axios';
 
-function Humans() {
+const Humans = () => {
   const [humans, setHumans] = useState([]);
+  const [loading, setLoading] = useState(true); // Estado de carga
 
   useEffect(() => {
-    axios.get('https://rickandmortyapi.com/api/character')
-      .then(response => {
+    const fetchHumans = async () => {
+      try {
+        const response = await axios.get('https://rickandmortyapi.com/api/character');
         const filteredHumans = response.data.results.filter(character => character.species === 'Human');
         setHumans(filteredHumans);
-      })
-      .catch(error => console.log(error));
+      } catch (error) {
+        console.error('Error fetching human characters:', error);
+      } finally {
+        setLoading(false); // Cambiar a false al finalizar la carga
+      }
+    };
+
+    fetchHumans();
   }, []);
 
+  if (loading) {
+    return (
+      <Container>
+        <Typography variant="h6" align="center">Cargando humanos...</Typography>
+        <CircularProgress />
+      </Container>
+    ); // Mostrar un indicador de carga
+  }
+
   return (
-    <Container>
-      <Grid container spacing={3}>
-        {humans.map(character => (
-          <Grid item xs={12} sm={6} md={4} key={character.id}>
-            <CharacterCard character={character} />
+    <Container maxWidth="lg" style={{ marginTop: '20px' }}>
+      <Grid container spacing={2}>
+        {humans.map(human => (
+          <Grid item xs={12} sm={6} md={4} key={human.id}>
+            <CharacterCard character={human} />
           </Grid>
         ))}
       </Grid>
     </Container>
   );
-}
+};
 
 export default Humans;

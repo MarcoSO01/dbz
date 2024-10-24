@@ -2,18 +2,32 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import CharacterCard from '../components/CharacterCard';
-import { Grid, Container } from '@mui/material';
+import { Grid, Container, CircularProgress, Typography } from '@mui/material';
 
 function Home() {
   const [characters, setCharacters] = useState([]);
+  const [loading, setLoading] = useState(true); // Estado de carga
 
   useEffect(() => {
     axios.get('https://rickandmortyapi.com/api/character')
       .then(response => {
         setCharacters(response.data.results);
+        setLoading(false); // Cambiar a false cuando se cargan los datos
       })
-      .catch(error => console.log(error));
+      .catch(error => {
+        console.log(error);
+        setLoading(false); // Cambiar a false si hay un error
+      });
   }, []);
+
+  if (loading) {
+    return (
+      <Container>
+        <Typography variant="h6" align="center">Cargando personajes...</Typography>
+        <CircularProgress />
+      </Container>
+    ); // Mostrar un indicador de carga
+  }
 
   return (
     <Container>

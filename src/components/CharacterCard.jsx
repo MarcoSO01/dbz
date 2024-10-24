@@ -13,7 +13,7 @@ function CharacterCard({ character }) {
       <CardContent>
         <Typography variant="h5">{character.name}</Typography>
         <Button variant="contained" color="primary" component={Link} to={`/characters/${character.id}`}>
-          View Details
+          DETALLE
         </Button>
       </CardContent>
     </Card>
@@ -21,3 +21,5 @@ function CharacterCard({ character }) {
 }
 
 export default CharacterCard;
+
+

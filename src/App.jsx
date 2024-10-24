@@ -5,21 +5,18 @@ import Navbar from './components/Navbar';
 import Aliens from './pages/Aliens';
 import Humans from './pages/Humans';
 import About from './pages/About';
+import { CssBaseline } from '@mui/material'; 
 
 function App() {
   return (
     <Router>
+      <CssBaseline /> {}
       <Navbar />
       <Routes>
-        {}
         <Route path="/" element={<Home />} />
-        {}
         <Route path="/characters/:id" element={<CharacterDetails />} />
-        {}
         <Route path="/aliens" element={<Aliens />} />
-        {}
         <Route path="/humans" element={<Humans />} />
-        {}
         <Route path="/about" element={<About />} />
       </Routes>
     </Router>
