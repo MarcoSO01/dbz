@@ -1,23 +1,37 @@
-/*PAGINA DE INICIO*/
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import CharacterCard from '../components/CharacterCard';
-import { Grid, Container, Typography, Button } from '@mui/material';
+import { Grid, Container, Typography } from '@mui/material';
 
 function Home() {
   const [characters, setCharacters] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [showCharacters, setShowCharacters] = useState(false); // Estado para controlar la visibilidad de los personajes
 
   useEffect(() => {
     const fetchCharacters = async () => {
+      setLoading(true);
+      setError(null);
+
+      let allCharacters = [];
+      let url = 'https://dragonball-api.com/api/characters';
+
       try {
-        const response = await axios.get('https://rickandmortyapi.com/api/character');
-        setCharacters(response.data.results);
+        while (url) {
+          const response = await axios.get(url);
+          const data = response.data;
+
+          // Agrega los personajes de la página actual al array total
+          allCharacters = [...allCharacters, ...data.items];
+          
+          // Configura la URL para la siguiente página, si existe
+          url = data.links.next || null;
+        }
+
+        setCharacters(allCharacters);
       } catch (err) {
         console.error(err);
-        setError('Failed to load characters.');
+        setError(err.response?.data?.message || 'Failed to load characters.');
       } finally {
         setLoading(false);
       }
@@ -28,7 +42,16 @@ function Home() {
 
   if (loading) {
     return (
-      <Container maxWidth="lg" style={{ marginTop: '20px', textAlign: 'center' }}>
+      <Container
+        maxWidth="lg"
+        sx={{
+          backgroundColor: '#000',
+          color: '#f00',
+          textAlign: 'center',
+          padding: '20px',
+          minHeight: '100vh',
+        }}
+      >
         <Typography variant="h5">Loading...</Typography>
       </Container>
     );
@@ -36,46 +59,53 @@ function Home() {
 
   if (error) {
     return (
-      <Container maxWidth="lg" style={{ marginTop: '20px', textAlign: 'center' }}>
+      <Container
+        maxWidth="lg"
+        sx={{
+          backgroundColor: '#000',
+          color: '#f00',
+          textAlign: 'center',
+          padding: '20px',
+          minHeight: '100vh',
+        }}
+      >
         <Typography variant="h5">{error}</Typography>
       </Container>
     );
   }
 
   return (
-    <Container maxWidth="lg" style={{ marginTop: '20px' }}>
-      <Button 
-        variant="contained" 
-        sx={{ 
-          backgroundColor: '#88e23b', 
-          color: '#000', 
-          '&:hover': { backgroundColor: '#76d62a' } 
-        }} 
-        onClick={() => setShowCharacters(!showCharacters)} // Cambiar la visibilidad de los personajes
-        style={{ marginBottom: '30px', display: 'block', marginLeft: 'auto', marginRight: 'auto' }}
+    <Container
+      maxWidth="lg"
+      sx={{
+        backgroundColor: '#000',
+        color: '#f00',
+        marginTop: '20px',
+        padding: '20px',
+        minHeight: '100vh',
+      }}
+    >
+      <Typography
+        variant="h4"
+        sx={{
+          fontFamily: 'Inter, system-ui, Avenir, Helvetica, Arial, sans-serif',
+          textAlign: 'center',
+          marginBottom: '50px', // Margen entre el título y las tarjetas
+          color: '#673AB7', // Color morado
+          fontWeight: 'bold', // Negrita
+          textTransform: 'uppercase', // Texto en mayúsculas
+          letterSpacing: '1px', // Espaciado entre letras
+        }}
       >
-        {showCharacters ? 'Ocultar Todos los Personajes' : 'Mostrar Todos los Personajes'}
-      </Button>
-      {showCharacters && ( // Solo mostrar personajes si showCharacters es true
-        <>
-          <Typography 
-            variant="h4" 
-            style={{ 
-              fontFamily: 'Inter, system-ui, Avenir, Helvetica, Arial, sans-serif', 
-              textAlign: 'center', 
-              marginBottom: '30px' 
-            }}
-          >
-          </Typography>
-          <Grid container spacing={2}>
-            {characters.map(character => (
-              <Grid item xs={12} sm={6} md={4} key={character.id}>
-                <CharacterCard character={character} />
-              </Grid>
-            ))}
+      
+      </Typography>
+      <Grid container spacing={2}>
+        {characters.map(character => (
+          <Grid item xs={12} sm={6} md={4} key={character.id}>
+            <CharacterCard character={character} />
           </Grid>
-        </>
-      )}
+        ))}
+      </Grid>
     </Container>
   );
 }

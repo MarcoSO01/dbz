@@ -1,54 +1,51 @@
-import { AppBar, Toolbar, Typography, Button } from '@mui/material';
+import { AppBar, Toolbar, Typography, Button, Box } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   return (
-    <AppBar position="static" sx={{ backgroundColor: '#88e23b' }}> {/* Fondo verde */}
-      <Toolbar>
-      <Typography 
-          variant="h6" 
-          style={{ 
-            flexGrow: 1, 
-            fontFamily: 'Inter, system-ui, Avenir, Helvetica, Arial, sans-serif', // Cambiar la fuente aquí
-            color: '#000' // Color negro
+    <AppBar
+      position="static" 
+      sx={{
+        background: 'linear-gradient(135deg, #ffefba 30%, #ff7e5f 90%)', 
+        boxShadow: '0 4px 10px rgba(0, 0, 0, 0.15)',
+      }}
+    >
+      <Toolbar sx={{ justifyContent: 'space-between' }}>
+        <Typography
+          variant="h6"
+          sx={{
+            fontFamily: 'Inter, system-ui, Avenir, Helvetica, Arial, sans-serif',
+            color: '#fff',
+            fontWeight: 'bold',
+            letterSpacing: '0.1rem',
           }}
         >
-          RICK AND MORTY
+          DRAGONBALL Z
         </Typography>
-        <Button 
-          sx={{ color: '#000', fontFamily: 'Inter, system-ui, Avenir, Helvetica, Arial, sans-serif' }} 
-          component={Link} 
-          to="/"
-        >
-          Home
-        </Button>
-        <Button 
-          sx={{ color: '#000', fontFamily: 'Inter, system-ui, Avenir, Helvetica, Arial, sans-serif' }} 
-          component={Link} 
-          to="/aliens"
-        >
-          Aliens
-        </Button>
-        <Button 
-          sx={{ color: '#000', fontFamily: 'Inter, system-ui, Avenir, Helvetica, Arial, sans-serif' }} 
-          component={Link} 
-          to="/humans"
-        >
-          Humans
-        </Button>
-        <Button 
-          sx={{ color: '#000', fontFamily: 'Inter, system-ui, Avenir, Helvetica, Arial, sans-serif' }} 
-          component={Link} 
-          to="/about"
-        >
-          About
-        </Button>
+        <Box sx={{ display: 'flex' }}>
+          {['Home', 'Aliens', 'Humans', 'About'].map((text) => (
+            <Button
+              key={text}
+              component={Link}
+              to={`/${text.toLowerCase()}`}
+              sx={{
+                color: '#fff',
+                fontFamily: 'Inter, system-ui, Avenir, Helvetica, Arial, sans-serif',
+                padding: '10px 15px',
+                transition: 'background-color 0.3s, color 0.3s',
+                '&:hover': {
+                  backgroundColor: '#ff6b6b',
+                  color: '#fff',
+                },
+              }}
+            >
+              {text}
+            </Button>
+          ))}
+        </Box>
       </Toolbar>
     </AppBar>
   );
 };
 
 export default Navbar;
-
-
-

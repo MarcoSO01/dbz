@@ -1,29 +1,105 @@
 import React from 'react';
-import { Container, Typography, Card, CardContent, CardMedia, Box } from '@mui/material';
+import { Container, Typography, Card, CardContent, CardMedia, Box, Divider } from '@mui/material';
 
 const About = () => {
   return (
-    <Container maxWidth="md" style={{ marginTop: '20px' }}>
-      <Box display="flex" justifyContent="center">
-        <Card>
+    <Container 
+      maxWidth="md" 
+      sx={{ 
+        marginTop: '100px', 
+        padding: '20px', 
+        background: 'linear-gradient(135deg, #ffefba 30%, #ff7e5f 90%)', 
+        borderRadius: '10px', 
+        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)',
+        marginLeft: { sm: '300px' },
+      }}
+    >
+      <Box display="flex" justifyContent="center" flexDirection="column" alignItems="center">
+        <Card 
+          sx={{ 
+            borderRadius: '15px', 
+            boxShadow: 3, 
+            backgroundColor: '#ff6b6b',
+            width: '100%',
+            overflow: 'hidden',
+          }}
+        >
           <CardMedia
             sx={{
-              height: { xs: 200, md: 300 }, // Altura ajustable para diferentes tamaños de pantalla
-              width: '100%', // Ancho completo de la tarjeta
-              objectFit: 'cover', // Ajusta la imagen para cubrir el área del contenedor
+              height: { xs: 200, md: 300 },
+              width: '100%',
+              objectFit: 'contain',
             }}
-            image="https://beam-images.warnermediacdn.com/BEAM_LWM_DELIVERABLES/6ace005a-41eb-4e44-bf13-abdfaa9e5143/7437d77d-3152-49bd-bc07-63950bd52060?host=wbd-images.prod-vod.h264.io&partner=beamcom" // Puedes cambiar esta URL por una imagen relevante
-            alt="Rick and Morty"
+            image="https://wallpapercave.com/wp/wp2091923.png"
+            alt="Dragon Ball Z"
           />
           <CardContent>
-            <Typography variant="h5" component="div" align="center">
-               Rick and Morty
+            <Typography 
+              variant="h4" 
+              component="div" 
+              align="center" 
+              gutterBottom
+              style={{ color: '#fff' }}
+            >
+              DRAGON BALL SUPER
             </Typography>
-            <Typography variant="body2" color="text.secondary" align="justify">
-              "Rick and Morty" es una serie de televisión animada creada por Justin Roiland y Dan Harmon. 
-              La serie sigue las aventuras de un científico excéntrico y alcohólico llamado Rick Sánchez. 
-              y su nieto de buen corazón pero inquieto Morty Smith. Emprenden peligrosas aventuras a través 
-              el multiverso, lidiando con diversas amenazas y dilemas morales.
+            <Divider sx={{ marginY: 2, backgroundColor: '#fff' }} />
+            <Typography 
+              variant="h5" 
+              component="div" 
+              align="center" 
+              gutterBottom
+              style={{ color: '#fff' }}
+            >
+              La Historia
+            </Typography>
+            <Typography 
+              variant="body1" 
+              color="text.secondary" 
+              align="justify" 
+              style={{ lineHeight: '1.6', color: '#333', marginBottom: '16px' }}
+            >
+              Dragon Ball Super sigue las aventuras de Goku y sus amigos tras la derrota de Majin Buu. La serie explora nuevos desafíos, incluyendo enfrentamientos con dioses, guerreros de otros universos y enemigos legendarios.
+            </Typography>
+
+            <Divider sx={{ marginY: 2, backgroundColor: '#fff' }} />
+
+            <Typography 
+              variant="h5" 
+              component="div" 
+              align="center" 
+              gutterBottom
+              style={{ color: '#fff' }}
+            >
+              Transformaciones y Nuevos Arcos
+            </Typography>
+            <Typography 
+              variant="body1" 
+              color="text.secondary" 
+              align="justify" 
+              style={{ lineHeight: '1.6', color: '#333', marginBottom: '16px' }}
+            >
+              La serie introduce transformaciones icónicas como el Super Saiyajin Dios y el Ultra Instinto. Entre los arcos más destacados están la Batalla de los Dioses, la Resurrección de Freezer, el Torneo de Poder y el regreso de Broly.
+            </Typography>
+
+            <Divider sx={{ marginY: 2, backgroundColor: '#fff' }} />
+
+            <Typography 
+              variant="h5" 
+              component="div" 
+              align="center" 
+              gutterBottom
+              style={{ color: '#fff' }}
+            >
+              Expansión del Universo
+            </Typography>
+            <Typography 
+              variant="body1" 
+              color="text.secondary" 
+              align="justify" 
+              style={{ lineHeight: '1.6', color: '#333', marginBottom: '16px' }}
+            >
+              Dragon Ball Super amplía el universo de Dragon Ball, destacando por su acción, humor y la exploración de temas de multiversos y dioses, llevando la historia a nuevos niveles.
             </Typography>
           </CardContent>
         </Card>
@@ -33,4 +109,3 @@ const About = () => {
 };
 
 export default About;
-

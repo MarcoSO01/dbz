@@ -1,25 +1,27 @@
+// App.jsx
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
-import CharacterDetails from './pages/CharacterDetails';  
-import Navbar from './components/Navbar';
 import Aliens from './pages/Aliens';
 import Humans from './pages/Humans';
 import About from './pages/About';
-import { CssBaseline } from '@mui/material'; 
-
+import Sidebar from './components/Sidebar';
+import CharacterDetail from './pages/CharacterDetails';
 
 function App() {
   return (
     <Router>
-      <CssBaseline /> {}
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/characters/:id" element={<CharacterDetails />} />
-        <Route path="/aliens" element={<Aliens />} />
-        <Route path="/humans" element={<Humans />} />
-        <Route path="/about" element={<About />} />
-      </Routes>
+      <div style={{ backgroundColor: '#000', color: '#fff', minHeight: '100vh' }}>
+        <Sidebar />
+        <div style={{ marginRight: 250, padding: '20px' }}>
+          <Routes>
+            <Route path="/INICIO" element={<Home />} />
+            <Route path="/ALIENIGENAS" element={<Aliens />} />
+            <Route path="/HUMANOS" element={<Humans />} />
+            <Route path="/SOBRE" element={<About />} />
+            <Route path="/characters/:id" element={<CharacterDetail />} />
+          </Routes>
+        </div>
+      </div>
     </Router>
   );
 }
